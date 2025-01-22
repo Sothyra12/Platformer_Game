@@ -16,5 +16,13 @@ const gravity = 0.5;
 let isCheckpointCollisionDetectionActive = true;
 
 const proportionalSize = (size) => {
-  
-};
+    return innerHeight < 500 ? Math.ceil((size / 500) * innerHeight) : size;
+}
+
+// class to define some characteristics for the main player of the game
+class Player {
+    // define the player's position, velocity, width, and height values. All of these values will be defined inside the constructor method.
+    constructor(){
+        this.position = {};
+    }
+}
