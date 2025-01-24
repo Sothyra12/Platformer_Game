@@ -24,20 +24,51 @@ class Player {
   // define the player's position, velocity, width, and height values. All of these values will be defined inside the constructor method.
   constructor() {
     this.position = {
-        // use the proportionalSize function here to make sure that the player's position is always proportional to the screen size. 
-        // This is important because you want the player to be able to move around the screen regardless of the screen size
+      // use the proportionalSize function here to make sure that the player's position is always proportional to the screen size.
+      // This is important because you want the player to be able to move around the screen regardless of the screen size
       x: proportionalSize(10),
       y: proportionalSize(400),
     };
 
     // store the player's speed in x and y directions
     this.velocity = {
-        x: 0,
-        y: 0,
-      };
-    
+      x: 0,
+      y: 0,
+    };
+
     // using the proportionalSize() function here to set the width and height properties of your class to be proportional to the height of the screen.
     this.width = proportionalSize(40);
     this.height = proportionalSize(40);
+  }
+
+  draw() {
+    // fillStyle property is used to set the color of the player
+    ctx.fillStyle = "#99c9ff";
+    // fillRect method to draw the player shape on the screen
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+  }
+
+  update() {
+    this.draw();
+    this.position.x += this.velocity.x;
+    this.position.y += this.velocity.y;
+
+    if (this.position.y + this.height + this.velocity.y <= canvas.height) {
+      if (this.position.y < 0) {
+        this.position.y = 0;
+        this.velocity.y = gravity;
+      }
+      this.velocity.y += gravity;
+    } else {
+      this.velocity.y = 0;
+    }
+
+    if (this.position.x < this.width) {
+      this.position.x = this.width;
+    }
+
+    if (this.position.x >= canvas.width - this.width * 2) {
+      this.position.x = canvas.width - this.width * 2;
+    }
   }
 }
