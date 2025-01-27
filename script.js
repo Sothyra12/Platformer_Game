@@ -72,3 +72,22 @@ class Player {
     }
   }
 }
+
+const player = new Player();
+
+const animate = () => {
+  // The requestAnimationFrame() web API, takes in a callback and is used to update the animation on the screen. 
+  // The animate function will be responsible for updating the player's position and continually drawing it on the canvas.
+  requestAnimationFrame(animate);
+  // clearRect method to clear the canvas before drawing the player again
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  player.update();
+}
+
+const startGame = () => {
+  canvas.style.display = "block";
+  startScreen.style.display = "none";
+  player.draw();
+}
+
+startBtn.addEventListener("click", startGame);
